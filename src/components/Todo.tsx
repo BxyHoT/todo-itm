@@ -44,7 +44,13 @@ export const Todo = ({ completed, title, id, handleChangeTodo }: ITodoProps) => 
             </div>
             <form onSubmit={handleOnSubmit}>
                 <div style={{ display: edit ? 'flex' : 'none', margin: '15px 0' }}>
-                    <TextField value={taskTitle} onChange={handleChangeTask} type='text' required={true} />
+                    <TextField
+                        value={taskTitle}
+                        onChange={handleChangeTask}
+                        type='text'
+                        required={true}
+                        autoComplete='off'
+                    />
                 </div>
                 <div>
                     <Button sx={{ margin: '0 15px', padding: '0 30px' }} onClick={handleEditToggle}>

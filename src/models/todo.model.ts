@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type todosType = { id: string; title: string; completed: boolean };
 
-export const todos: todosType[] | [] = [
+const todosArray: todosType[] = [
     {
         id: '51c1c4f1-03bf-48bf-9705-9dc97ab61a76',
         title: 'delectus aut autem',
@@ -55,21 +55,31 @@ export const todos: todosType[] | [] = [
     },
 ];
 
+if (localStorage.getItem('tasks') === null) {
+    localStorage.setItem('tasks', JSON.stringify(todosArray));
+}
+
+export const todos: todosType[] = JSON.parse(localStorage.getItem('tasks') || '[]');
+
 export const setNewTodo = (task: string) => {
     todos.push({ id: uuidv4(), title: task, completed: false });
+    localStorage.setItem('tasks', JSON.stringify(todos));
 };
 
 export const deleteTask = (removeId: string) => {
     const indexToRemove = todos.findIndex(({ id }) => id === removeId);
     todos.splice(indexToRemove, 1);
+    localStorage.setItem('tasks', JSON.stringify(todos));
 };
 
 export const setCompleted = (id: string) => {
     const findIndex = todos.findIndex(todo => todo.id === id);
     todos[findIndex] = { ...todos[findIndex], completed: !todos[findIndex].completed };
+    localStorage.setItem('tasks', JSON.stringify(todos));
 };
 
 export const changeTodoTitle = (id: string, text: string) => {
     const findIndex = todos.findIndex(todo => todo.id === id);
     todos[findIndex] = { ...todos[findIndex], title: text };
+    localStorage.setItem('tasks', JSON.stringify(todos));
 };

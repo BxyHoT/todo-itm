@@ -11,6 +11,9 @@ const theme = createTheme({
                     width: 25,
                     height: 25,
                     margin: 20,
+                    '&:hover': {
+                        backgroundColor: '#f8f8f2',
+                    },
                 },
             },
         },
