@@ -62,7 +62,7 @@ if (localStorage.getItem('tasks') === null) {
 export const todos: todosType[] = JSON.parse(localStorage.getItem('tasks') || '[]');
 
 export const setNewTodo = (task: string) => {
-    todos.push({ id: uuidv4(), title: task, completed: false });
+    todos.unshift({ id: uuidv4(), title: task, completed: false });
     localStorage.setItem('tasks', JSON.stringify(todos));
 };
 
