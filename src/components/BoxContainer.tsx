@@ -8,11 +8,10 @@ import { todos } from '../models/todo.model';
 import { useState } from 'react';
 
 export default function BoxContainer() {
-    const [todoArray, setTodoArray] = useState(todos);
+    const [todoArray, setTodoArray] = useState([...todos]);
     const [showTask, setShowTask] = useState({ all: true, active: false, completed: false });
     const handleChangeTodo = () => {
-        setTodoArray(todos);
-        console.log('Стейт поменялся');
+        setTodoArray([...todos]);
     };
     const handleShowAllTask = () => {
         setShowTask({ all: true, active: false, completed: false });
